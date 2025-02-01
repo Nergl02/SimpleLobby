@@ -1,0 +1,35 @@
+lobby:
+  world: world
+  x: 0.0
+  y: 100.0
+  z: 0.0
+  yaw: 0.0
+  pitch: 0.0
+
+prefix: "&6[&bSimple&3Lobby&r&6]&r "
+
+launchpad:
+  bottomBlock: CYAN_CONCRETE
+  topBlock: CYAN_CARPET
+  launchPower: 2.0
+  verticalBoost: 0.8
+
+on-join:
+  teleport-to-lobby: true
+  gamemode: ADVENTURE
+  effect: true
+
+effects:
+  - type: SPEED
+    level: 1
+    timer: -1 # -1 stands for infinity otherwise its in seconds
+  - type: REGENERATION
+    level: 2
+    timer: -1
+
+double-jump: true
+
+custom-join-leave-messages:
+  enabled: true
+  join: "&a%player%&f joined the game."
+  leave: "&c%player%&f left the game."
