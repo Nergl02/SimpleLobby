@@ -19,6 +19,7 @@ public final class SimpleLobby extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
 		this.getServer().getPluginManager().registerEvents(new LaunchPadListener(this), this);
 		this.getServer().getPluginManager().registerEvents(new doubleJumpListener(this), this);
+		this.getServer().getPluginManager().registerEvents(new EffectListener(this), this);
 
 		this.getCommand("slreload").setExecutor(new reloadCommand(this));
 

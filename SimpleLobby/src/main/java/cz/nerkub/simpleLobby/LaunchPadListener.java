@@ -38,21 +38,23 @@ public class LaunchPadListener implements Listener {
 
 		Location bottomBlockLoc = location.clone().subtract(0, 1, 0);
 		Location topBlockLoc = location.clone();
+		if (player.getLocation().getWorld().getName().equals(plugin.getConfig().getString("lobby.world"))) {
 
-		if (bottomBlockLoc.getBlock().getType() == bottomBlock && topBlockLoc.getBlock().getType() == topBlock) {
-			Vector direction = player.getLocation().getDirection().setY(0).normalize();
+			if (bottomBlockLoc.getBlock().getType() == bottomBlock && topBlockLoc.getBlock().getType() == topBlock) {
+				Vector direction = player.getLocation().getDirection().setY(0).normalize();
 
-			// Přidáme vertikální sílu
-			direction.multiply(launchPower).setY(verticalBoost);
+				// Přidáme vertikální sílu
+				direction.multiply(launchPower).setY(verticalBoost);
 
-			// Aplikujeme hráči odraz
-			player.setVelocity(direction);
+				// Aplikujeme hráči odraz
+				player.setVelocity(direction);
 
-			// Zvukový efekt při odrazu
-			player.getWorld().playSound(player.getLocation(), "minecraft:entity.player.levelup", 1.0f, 1.5f);
+				// Zvukový efekt při odrazu
+				player.getWorld().playSound(player.getLocation(), "minecraft:entity.player.levelup", 1.0f, 1.5f);
 
-			// Partikl efekt (volitelné)
-			player.getWorld().spawnParticle(org.bukkit.Particle.CLOUD, player.getLocation(), 10);
+				// Partikl efekt (volitelné)
+				player.getWorld().spawnParticle(org.bukkit.Particle.CLOUD, player.getLocation(), 10);
+			}
 		}
 	}
 }

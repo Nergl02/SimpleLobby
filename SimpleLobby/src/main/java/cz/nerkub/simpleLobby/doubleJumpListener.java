@@ -18,14 +18,16 @@ public class doubleJumpListener implements Listener {
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
+		if (player.getLocation().getWorld().getName().equals(plugin.getConfig().getString("lobby.world"))) {
 
-		if (plugin.getConfig().getBoolean("double-jump")) {
-			if (player.getGameMode() != GameMode.CREATIVE && player.isOnGround()) {
-				player.setAllowFlight(true);
-			}
-		} else {
-			if (player.getGameMode() != GameMode.CREATIVE) {
-				player.setAllowFlight(false);
+			if (plugin.getConfig().getBoolean("double-jump")) {
+				if (player.getGameMode() != GameMode.CREATIVE && player.isOnGround()) {
+					player.setAllowFlight(true);
+				}
+			} else {
+				if (player.getGameMode() != GameMode.CREATIVE) {
+					player.setAllowFlight(false);
+				}
 			}
 		}
 	}
@@ -33,26 +35,28 @@ public class doubleJumpListener implements Listener {
 	@EventHandler
 	public void onPlayerFlight(PlayerToggleFlightEvent event) {
 		Player player = event.getPlayer();
+		if (player.getLocation().getWorld().getName().equals(plugin.getConfig().getString("lobby.world"))) {
 
-		if (plugin.getConfig().getBoolean("double-jump")) {
+			if (plugin.getConfig().getBoolean("double-jump")) {
+				if (player.getGameMode() != GameMode.CREATIVE) {
+					event.setCancelled(true);
+
+					player.setVelocity(player.getLocation().getDirection().multiply(0.5).setY(1.0));
+
+					// Vizuální efekt
+					player.getWorld().spawnParticle(org.bukkit.Particle.CLOUD, player.getLocation(), 10);
+
+					// Zvuk efektu double jumpu
+					player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_BAT_TAKEOFF, 1.0f, 1.0f);
+
+					player.setAllowFlight(false);
+					player.setFlying(false);
+				}
+			}
+
 			if (player.getGameMode() != GameMode.CREATIVE) {
-				event.setCancelled(true);
-
-				player.setVelocity(player.getLocation().getDirection().multiply(0.5).setY(1.0));
-
-				// Vizuální efekt
-				player.getWorld().spawnParticle(org.bukkit.Particle.CLOUD, player.getLocation(), 10);
-
-				// Zvuk efektu double jumpu
-				player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_BAT_TAKEOFF, 1.0f, 1.0f);
-
-				player.setAllowFlight(false);
 				player.setFlying(false);
 			}
-		}
-
-		if (player.getGameMode() != GameMode.CREATIVE) {
-			player.setFlying(false);
 		}
 	}
 

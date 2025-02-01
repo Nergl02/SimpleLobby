@@ -2,6 +2,7 @@ cz\nerkub\simpleLobby\SimpleLobby.class
 cz\nerkub\simpleLobby\Metrics$AdvancedPie.class
 cz\nerkub\simpleLobby\Metrics$SingleLineChart.class
 cz\nerkub\simpleLobby\Metrics$SimpleBarChart.class
+cz\nerkub\simpleLobby\EffectListener.class
 cz\nerkub\simpleLobby\Metrics$MultiLineChart.class
 cz\nerkub\simpleLobby\Metrics$SimplePie.class
 cz\nerkub\simpleLobby\lobbyCommand.class
